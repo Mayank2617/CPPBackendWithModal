@@ -6,6 +6,7 @@ const authRoutes = require("./routes/authRoutes");
 const protectedRoutes = require("./routes/protectedRoutes");
 const predictRoutes = require('./routes/predictRoute');
 const advisoryRoutes = require('./routes/advisoryRoutes');
+const { exec } = require('child_process');
 
 
 const app = express();
@@ -33,6 +34,13 @@ app.use('/api/advisory', advisoryRoutes);
 
 app.get("/", (req, res) => {
     res.send("Backend is running...");
+    exec('python3 --version', (error, stdout, stderr) => {
+        if (error) {
+          console.error('Python not found:', error);
+        } else {
+          console.log('Python version:', stdout);
+        }
+      });
 });
 
 
