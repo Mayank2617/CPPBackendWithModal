@@ -1,0 +1,4 @@
+node_modules/
+requirements.txt
+.env
+*.log

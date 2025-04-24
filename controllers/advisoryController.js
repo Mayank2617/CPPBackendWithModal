@@ -1,0 +1,39 @@
+const { spawn } = require("child_process");
+const path = require("path");
+
+const runModelPrediction = (req, res) => {
+  const { state, soil, month } = req.body;
+
+  const pythonPath = path.join(__dirname, '..', '..', 'Modal', 'crop_advisory.py');
+
+  // ✅ Set working directory to Modal folder
+  const pythonProcess = spawn("python", [pythonPath, state, soil, month], {
+    cwd: path.join(__dirname, '..', '..', 'Modal'),
+  });
+
+  let result = "";
+  let error = "";
+
+  pythonProcess.stdout.on("data", (data) => {
+    result += data.toString();
+  });
+
+  pythonProcess.stderr.on("data", (data) => {
+    error += data.toString();
+  });
+
+  pythonProcess.on("close", (code) => {
+    if (code !== 0) {
+      return res.status(500).json({ error: error || "Python script failed" });
+    }
+
+    try {
+      const jsonResult = JSON.parse(result);
+      res.json(jsonResult);
+    } catch (e) {
+      res.status(500).json({ error: "Failed to parse Python output", raw: result });
+    }
+  });
+};
+
+module.exports = { runModelPrediction };
