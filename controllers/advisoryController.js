@@ -7,7 +7,7 @@ const runModelPrediction = (req, res) => {
   const pythonPath = path.join(__dirname, '..', '..', 'Modal', 'crop_advisory.py');
 
   // ✅ Set working directory to Modal folder
-  const pythonProcess = spawn("python", [pythonPath, state, soil, month], {
+  const pythonProcess = spawn("python3", [pythonPath, state, soil, month], {
     cwd: path.join(__dirname, '..', '..', 'Modal'),
   });
 
