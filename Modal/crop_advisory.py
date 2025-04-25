@@ -1,7 +1,14 @@
-import pandas as pd
 import sys
-import json
+print("🐍 Python Version:", sys.version)
 
+try:
+    import pandas as pd
+    print("✅ Pandas is available!")
+except ImportError:
+    print("❌ Pandas is NOT available!")
+    sys.exit(1)
+
+import json
 
 # Load crop data once to avoid reloading on each call
 df, months = None, None
