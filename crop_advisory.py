@@ -21,15 +21,15 @@ def predict_crops_with_scores(state, soil_type, month):
 
     state_data = df[df['State'].str.lower() == state.lower()]
     if state_data.empty:
-        return {"error": f"No data found for state: {state}"}
+        return {"error": "No data found for state: {state}".format(state)}
 
     soil_data = state_data[state_data['Predominant Soil Types'].str.contains(soil_type, case=False)]
     if soil_data.empty:
-        return {"error": f"No crops found for soil type: {soil_type} in state: {state}"}
+        return {"error": "No crops found for soil type: {soil_type} in state: {state}".format(state)}
 
     available_crops = soil_data[soil_data[month] == 1]
     if available_crops.empty:
-        return {"error": f"No crops available in {month} for {state} with {soil_type} soil"}
+        return {"error": "No crops available in {month} for {state} with {soil_type} soil".format(state)}
 
     scores = []
     for _, crop_row in available_crops.iterrows():
