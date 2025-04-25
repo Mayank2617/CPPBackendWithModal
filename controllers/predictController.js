@@ -5,7 +5,7 @@ exports.runModelPrediction = (req, res) => {
   const inputData = JSON.stringify(req.body);
   const scriptPath = path.join(__dirname,'..','final_priceprediction.py');
 
-  const pythonProcess = spawn('python', [scriptPath, inputData]);
+  const pythonProcess = spawn('python311', [scriptPath, inputData]);
 
   let result = '';
   let error = '';
