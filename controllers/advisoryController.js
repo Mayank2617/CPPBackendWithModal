@@ -15,8 +15,12 @@ const runModelPrediction = (req, res) => {
   const pythonPath = path.join(__dirname, '..', 'Modal', 'crop_advisory.py');
   console.log("🚀 Running script at:", pythonPath);
 
-  // ✅ Spawn process without setting cwd unless you really need to
-  const pythonProcess = spawn("python3", [pythonPath, state, soil, month]);
+  // // ✅ Spawn process without setting cwd unless you really need to
+  // const pythonProcess = spawn("python3", [pythonPath, state, soil, month]);
+  const pythonProcess = spawn("python3", [pythonPath, state, soil, month], {
+    cwd: path.join(__dirname, '..', 'Modal'),
+  });
+  
   let result = "";
   let error = "";
 

@@ -3,9 +3,11 @@ const path = require('path');
 
 exports.runModelPrediction = (req, res) => {
   const inputData = JSON.stringify(req.body);
-  const scriptPath = path.join(__dirname, '../../Modal/final_priceprediction.py');
+  const scriptPath = path.join(__dirname, '..','Modal','final_priceprediction.py');
 
-  const pythonProcess = spawn('python3', [scriptPath, inputData]);
+  const pythonProcess = spawn('python3', [scriptPath, inputData],{
+    cwd: path.join(__dirname, '..', 'Modal'),
+  });
 
   let result = '';
   let error = '';
