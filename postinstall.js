@@ -16,9 +16,9 @@ if (os.platform() === "win32") {
     );
 } else {
     console.log("Running post-install script for Linux/macOS...");
-    exec("sudo apt update -y && sudo apt install -y python3 || sudo yum update -y && sudo yum install -y python3", (error, stdout, stderr) => {
+    exec("apt update -y && apt install -y python3 || yum update -y && yum install -y python3", (error, stdout, stderr) => {
         if (error) {
-            console.error(`Error installing Python on Linux/macOS: ${error}`);
+            console.error(`Error installing Python: ${error}`);
             return;
         }
         console.log(stdout);
