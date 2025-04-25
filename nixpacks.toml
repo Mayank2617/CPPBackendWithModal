@@ -1,14 +1,24 @@
 [phases.setup]
-nixPkgs = ["python", "nodejs_18"]
-
-[phases.install]
-cmds = [
-  "npm install",
-  "pip install -r requirements.txt"
+# Use Nix packages to install Python and required libraries
+nixPkgs = [
+  "python3",
+  "python3Packages.joblib",
+  "python3Packages.pandas",
+  "python3Packages.matplotlib",
+  "python3Packages.scikit-learn",
+  "python3Packages.xgboost",
+  "python3Packages.numpy",
+  "nodejs_18"
 ]
 
+[phases.install]
+# Only install Node.js dependencies
+cmds = ["npm install"]
+
 [phases.build]
+# No extra build steps needed for Python
 cmds = []
 
 [start]
+# Start your server
 cmd = "node server.js"
