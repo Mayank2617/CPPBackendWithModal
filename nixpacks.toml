@@ -1,16 +1,12 @@
 [phases.setup]
-nixPkgs = ["python311", "nodejs_18"]
+nixPkgs = ["python311Full", "nodejs_18"]
 
 [phases.install]
 cmds = [
   "npm install",
-  "python3.11 -m ensurepip --upgrade",                  
-  "python3.11 -m pip install --upgrade pip",             
-  "python3.11 -m pip install -r requirements.txt"        
+  "python3.11 -m pip install --upgrade pip",             # ✅ pip will now exist
+  "python3.11 -m pip install -r requirements.txt"
 ]
-
-[phases.build]
-cmds = []
 
 [start]
 cmd = "node server.js"
