@@ -1,6 +1,7 @@
+import pandas as pd
 import sys
-
 import json
+
 
 # Load crop data once to avoid reloading on each call
 df, months = None, None
