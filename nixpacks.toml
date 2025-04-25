@@ -3,10 +3,10 @@ nixPkgs = ["python311", "nodejs_18"]
 
 [phases.install]
 cmds = [
-  "python3.11 --version",
   "npm install",
-  "python3.11 -m pip install --upgrade pip",         # Add this first
-  "python3.11 -m pip install -r requirements.txt"    # Use python3.11 explicitly
+  "python3.11 -m ensurepip --upgrade",                  
+  "python3.11 -m pip install --upgrade pip",             
+  "python3.11 -m pip install -r requirements.txt"        
 ]
 
 [phases.build]
