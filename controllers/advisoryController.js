@@ -5,12 +5,10 @@ const runModelPrediction = (req, res) => {
   const { state, soil, month } = req.body;
 
 
-  const pythonPath = path.join(__dirname, '..', 'Modal', 'crop_advisory.py');
+  const pythonPath = path.join(__dirname,'Modal', 'crop_advisory.py');
   console.log("🚀 Running script at:", pythonPath);
 
-  const pythonProcess = spawn("python3", [pythonPath, state, soil, month], {
-    cwd: path.join(__dirname, '..', 'Modal'),
-  });
+  const pythonProcess = spawn("python", [pythonPath, state, soil, month]);
   
   let result = "";
   let error = "";
