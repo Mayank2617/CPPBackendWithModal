@@ -25,3 +25,6 @@ if (os.platform() === "win32") {
         console.error(stderr);
     });
 }
+
+// "postinstall": "apt-get update && apt-get install -y python3 python3-pip"
+// "postinstall": "node postinstall.js",

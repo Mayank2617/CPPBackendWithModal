@@ -1,3 +1,4 @@
 node_modules/
+postinstall.js
 .env
 *.log
